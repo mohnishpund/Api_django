@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+   <br/>
+   <br/>
+    <div class="card w-75">
+    <div class="card-body">
+        <h5 class="card-title">UPDATE PRODUCT</h5>
+        <p class="card-text">
+        <div class="container">
+            <div class="mb-3">
+                <div class="form-group">
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button class="btn btn-primary">Send</button>
+                    </form> 
+                </div>
+            </div>
+        </div>
+        </p>
+    </div>
+    </div>
+    <br/>
+    <br/>
+
+
+{% endblock %}
