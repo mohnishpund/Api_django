@@ -26,18 +26,18 @@
             </tr>
         </thead>
             <tbody>
-            {% for product in product_list %}
+            {% for api_product in product_list %}
                 <tr class="table-secondary">
-                    <td>{{ product.id }}</td>
-                    <td>{{ product.name }}</td>
-                    <td>{{ product.category }}</td>
-                    <td>{{ product.price }}</td>
-                    <td>{{ product.description }}</td>
-                    <td>{{ product.stars }}</td>
+                    <td>{{ api_product.id }}</td>
+                    <td>{{ api_product.name }}</td>
+                    <td>{{ api_product.category }}</td>
+                    <td>{{ api_product.price }}</td>
+                    <td>{{ api_product.description }}</td>
+                    <td>{{ api_product.stars }}</td>
                     <td><button type="button" class="btn btn-outline-success">
-                        <a href="{% url 'update_product' product.pk %}">Update</a></button></td>
+                        <a href="{% url 'update_product' api_product.pk %}">Update</a></button></td>
                     <td><button type="button" class="btn btn-outline-danger">
-                        <a href="{% url 'delete_product' product.pk %}">Delete</a></button></td>
+                        <a href="{% url 'delete_product' api_product.pk %}">Delete</a></button></td>
                 </tr>
             {% endfor %}    
             </tbody>
