@@ -1,5 +1,4 @@
-from itertools import product
-from django.shortcuts import render
+from django.shortcuts import render,  get_object_or_404
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.urls import reverse_lazy
@@ -70,21 +69,25 @@ def DeleteProduct(request, pk):
 #def home(request):
 #	return render(request, 'home.html', {})
 
-
-
 class HomeView(ListView):
-    api_product = Product.objects.all()
     model = Product
+    #form_class = DataSerializer
     template_name = 'home.html'
-	#ordering = ['-id']
 
+    def get_context_data(self, *args, **kwargs):
+        pro_menu = Product.objects.all()
+        context = super(HomeView, self).get_context_data(*args, **kwargs)
+        context["pro_menu"] = pro_menu
+        return context
+    
+   
 
 class AddProductView(CreateView):
     model = Product
     form_class = DataSerializer
     template_name = 'create_product.html'
     success_url = reverse_lazy('home')
-
+   
 
 class UpdateProductView(UpdateView):
     model = Product

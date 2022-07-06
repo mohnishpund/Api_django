@@ -19,26 +19,25 @@
             <th scope="col">Name</th>
             <th scope="col">Category</th>
             <th scope="col">Price</th>
+            <th scope="col">Stars</th>
             <th scope="col">Update</th>
             <th scope="col">Delete</th>
             </tr>
         </thead>
             <tbody>
-            
+             {% for product in product_list %}
                 <tr class="table-secondary">
                     <td>{{ product.id }}</td>
                     <td>{{ product.name }}</td>
                     <td>{{ product.category }}</td>
                     <td>{{ product.price }}</td>
-
-                    {% for product in product_list %}
-                        <td><button type="button" class="btn btn-outline-success">
-                            <a href="{% url 'update_product' product.pk %}">Update</a></button></td>
-                        <td><button type="button" class="btn btn-outline-danger">
-                            <a href="{% url 'delete_product' product.pk %}">Delete</a></button></td>
-                    {% endfor %}
+                    <td>{{ product.stars }}</td>                   
+                    <td><button type="button" class="btn btn-outline-success">
+                        <a href="{% url 'update_product' product.pk %}">Update</a></button></td>
+                    <td><button type="button" class="btn btn-outline-danger">
+                        <a href="{% url 'delete_product' product.pk %}">Delete</a></button></td>
                 </tr>
-                
+            {% endfor %}
             </tbody>
     </table>
 </div>
