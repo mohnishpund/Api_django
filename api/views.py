@@ -74,13 +74,13 @@ class HomeView(ListView):
     #form_class = DataSerializer
     template_name = 'home.html'
 
-    def get_context_data(self, *args, **kwargs):
-        pro_menu = Product.objects.all()
-        context = super(HomeView, self).get_context_data(*args, **kwargs)
-        context["pro_menu"] = pro_menu
-        return context
     
-   
+def ShowApi(request):
+     product = Product.objects.all()
+     form = DataSerializer(product)
+
+     return render(request, 'home.html', {})
+
 
 class AddProductView(CreateView):
     model = Product

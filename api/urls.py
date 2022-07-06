@@ -14,6 +14,8 @@ urlpatterns = [
 
     #path('', views.home, name="home"),
 
+    path('product-show/',views.ShowApi, name='product-show'),
+
     path('', HomeView.as_view(), name="home"),
     path('create_product', AddProductView.as_view(), name='create_product'),
     path('update_product/<int:pk>', UpdateProductView.as_view(), name='update_product'),
