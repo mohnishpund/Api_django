@@ -73,7 +73,7 @@ def DeleteProduct(request, pk):
 
 
 class HomeView(ListView):
-    product_api = Product.objects.all()
+    api_product = Product.objects.all()
     model = Product
     template_name = 'home.html'
 	#ordering = ['-id']
