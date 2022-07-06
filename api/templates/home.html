@@ -19,8 +19,6 @@
             <th scope="col">Name</th>
             <th scope="col">Category</th>
             <th scope="col">Price</th>
-            <th scope="col">Description</th>
-            <th scope="col">Stars</th>
             <th scope="col">Update</th>
             <th scope="col">Delete</th>
             </tr>
@@ -32,8 +30,6 @@
                     <td>{{ api_product.name }}</td>
                     <td>{{ api_product.category }}</td>
                     <td>{{ api_product.price }}</td>
-                    <td>{{ api_product.description }}</td>
-                    <td>{{ api_product.stars }}</td>
                     <td><button type="button" class="btn btn-outline-success">
                         <a href="{% url 'update_product' api_product.pk %}">Update</a></button></td>
                     <td><button type="button" class="btn btn-outline-danger">
