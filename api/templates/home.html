@@ -25,8 +25,8 @@
             <th scope="col">Delete</th>
             </tr>
         </thead>
-        {% for product in product_list %}
             <tbody>
+            {% for product in product_list %}
                 <tr class="table-secondary">
                     <td>{{ product.id }}</td>
                     <td>{{ product.name }}</td>
@@ -39,8 +39,8 @@
                     <td><button type="button" class="btn btn-outline-danger">
                         <a href="{% url 'delete_product' product.pk %}">Delete</a></button></td>
                 </tr>
+            {% endfor %}    
             </tbody>
-        {% endfor %}
     </table>
 </div>
 <br/>
