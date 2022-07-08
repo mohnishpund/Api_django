@@ -74,13 +74,6 @@ class HomeView(ListView):
     #form_class = DataSerializer
     template_name = 'home.html'
 
-    
-def ShowApi(request):
-     product = Product.objects.all()
-     form = DataSerializer(product)
-
-     return render(request, 'home.html', {})
-
 
 class AddProductView(CreateView):
     model = Product

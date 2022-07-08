@@ -12,9 +12,34 @@
 <br/>
 
 <div class="container">
-   {% for api_product in object_list %} 
-        {{ api_product.name }}
-    {% endfor %}
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr class="table-dark">
+            <th scope="col">id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Category</th>
+            <th scope="col">Price</th>
+            <th scope="col">Stars</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+            </tr>
+        </thead>
+            <tbody>
+             {% for product_api in product_list %}
+                <tr class="table-secondary">
+                    <td>{{ product_api.id }}</td>
+                    <td>{{ product_api.name }}</td>
+                    <td>{{ product_api.category }}</td>
+                    <td>{{ product_api.price }}</td>
+                    <td>{{ product_api.stars }}</td>                   
+                    <td><button type="button" class="btn btn-outline-success">
+                        <a href="{% url 'update_product' product_api.pk %}">Update</a></button></td>
+                    <td><button type="button" class="btn btn-outline-danger">
+                        <a href="{% url 'delete_product' product_api.pk %}">Delete</a></button></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+    </table>
 </div>
 <br/>
 <br/>
