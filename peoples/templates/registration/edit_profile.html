@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Edit Profile{% endblock %}
+{% block content %}
+
+
+
+<br/><br/>
+
+
+<div class="card text-black bg-info mb-3" style="max-width: 35rem;">
+  <div class="card-body">
+    <h5 class="card-title"><h1>Edit Settings...</h1></h5>
+    <p class="card-text">
+                
+        {{ user.profile.bio }}
+
+        <br/><br/>
+        <div class="form-group">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                
+        </div>
+    </p>
+    <a><button class="btn btn-primary">Update Profile</button></a>
+  </div>
+</div>
+<br/>
+<br/>
+<br/>
+{% endblock %}

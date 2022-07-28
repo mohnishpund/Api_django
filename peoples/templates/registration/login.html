@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+
+<br/>
+<br/>
+
+<div class="container">
+    <div class="card text-center text-blue bg-info" style="max-width: 35rem;">
+      <h5 class="card-header">Sign In</h5>
+      <div class="card-body">
+        <h5 class="card-title">Login</h5>
+        <p class="card-text">
+        <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <input type="text" class="form-control" 
+                name="username" placeholder="Username">
+            </div>
+            <br/>
+            <div class="form-group">
+                <input type="password" class="form-control" 
+                name="password" placeholder="Password">
+
+            <button class="btn btn-dark">Login</button>
+                <br/>
+            </div>
+        </p>
+        
+        </div>
+        <div class="card-footer text-dark">
+        <br/>
+        Not A Register? Sign Up <a href="{% url 'register'%}">Sign Up...</a>
+       </div>
+
+    <br/>
+    <br/>
+
+    </div>
+    </div>
+</form>
+</div>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+{% endblock %}

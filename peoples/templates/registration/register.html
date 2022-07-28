@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Register{% endblock %}
+{% block content %}
+
+<br/>
+<br/>
+<div class="container">
+    <div class="card text-black bg-info mb-3" style="max-width: 35rem;">
+      <div class="card-header">
+        <h1>Sign Up</h1>
+      </div>
+      <div class="container">
+          <div class="card-body">
+            <h5 class="card-title">Registration</h5>
+            <p class="card-text">
+                <br/>
+            <div class="form-group">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+
+            <a><button class="btn btn-dark">Register</button></a>
+                
+        </div>
+      </div>
+        </p>
+        
+      </div>
+    </div>
+</div>
+<br/>
+<br/>
+
+{% endblock %}

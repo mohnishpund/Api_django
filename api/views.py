@@ -7,7 +7,6 @@ from django.urls import reverse_lazy
 from .serializers import ProductSerializer, DataSerializer
 from .models import Product
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-
 # Create your views here.
 
 
@@ -92,3 +91,4 @@ class DeleteProductView(DeleteView):
     model = Product
     template_name ='delete_product.html'
     success_url = reverse_lazy('home')
+

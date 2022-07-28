@@ -1,38 +1,71 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-primary bg-info">
     <div class="container-fluid">
       <a class="navbar-brand" href="{% url 'home' %}"><bold>API</bold></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">DASHBOARD</a>
-          </li>
+
+        {% if user.is_authenticated %}
+          
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'home' %}">DASHBOARD</a>
+            </li>
+
           <li class="nav-item">
             <a class="nav-link active" href="{% url 'create_product' %}">CREATE DATA</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdownMenuLink" 
-            role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              JSON FILES
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="{% url 'product-create' %}">CREATE</a></li>
-              <li><a class="dropdown-item" href="{% url 'product-list' %}">LIST</a></li>
+
+          <li class="nav-item nav-item-danger dropdown">
+            <a class="nav-link link-danger dropdown-toggle active" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  JSON FILES</a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+              <li><a class="dropdown-item" href="{% url 'product-create' %}">CREATE JSON</a></li>
+              <li><a class="dropdown-item" href="{% url 'product-list' %}">LIST DICT</a></li>
             </ul>
-          </li>
-        </ul>
+            </li>
+
+        {% else %}
+             <li class="nav-item">
+               <a class="nav-link active" href="{% url 'login'%}">Login</a>
+              </li>
+            <li class="nav-item">
+             <a class="nav-link active" href="{% url 'register'%}">Register</a>
+            </li>
+        {% endif %}
+          </ul>
+
+        {% load static %}
+        {% if user.is_authenticated %}
+            <ul class="nav-item dropdown">
+               <a class="nav-link link-light dropdown-toggle active" href="#" id="navbardrop" data-toggle="dropdown">
+                   {% if user.profile.profile_pic %}
+                     <img src="{{ user.profile.profile_pic.url }}", width="20", height="20" class="rounded-circle">
+                    {% else %}  
+                      <img src="{% static 'api/img/isold.png' %}", width="20", height="20" class="rounded-circle"> 
+                    {% endif %}
+                 {{ user.first_name }} {{ user.last_name }}</a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Settings</a>
+                    {% if user.profile.id %}
+                        <a class="dropdown-item" href="{% url 'edit_profile_page' user.profile.id %}">Edit Profile Page</a>
+                        <a class="dropdown-item" href="{% url 'show_profile_page' user.profile.id %}">Show Profile Page</a>
+                    {% else %}
+                        <a class="dropdown-item" href="{% url 'create_profile_page' %}">Create Profile Page</a>
+                    {% endif %}
+                        <div class="dropdown-divider"></div> 
+                        <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                </div>
+            </ul>
+        {% endif %}
       </div>
     </div>
   </nav>
 
   <style>
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
     
     .dropdown-menu {
       display: none;
@@ -46,5 +79,8 @@
     
     .dropdown:hover .dropdown-menu {
       display: block;
+     
+
     }
+  
     </style>

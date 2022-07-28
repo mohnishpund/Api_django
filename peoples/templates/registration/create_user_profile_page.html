@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Create A New Profile Page{% endblock %}
+{% block content %}
+
+
+
+ <br/>
+ <br/>
+ <br/>
+
+<div class="container">
+    <div class="card text-center text-danger bg-dark mb-3" style="max-width: 35rem;">
+    {% if user.is_authenticated %}
+      <div class="card-header">
+        Profile Build
+      </div>
+      <div class="card-body">
+        <h5 class="card-title"><h1>Create Profile</h1></h5>
+        <p class="card-text">
+           
+        <div class="form-group">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.media }}
+                {{ form.as_p }}
+            </p>
+            <a><button class="btn btn-danger">Create Profile Page</button></a>      
+        </div>
+    {% else %}
+
+    None
+
+    {% endif %}
+            
+      </div>
+      <div class="card-footer text-black">
+      <h3>  / Website / Facebook / Twitter / Instagram / Pinterest /  </h3>
+      </div>
+  </form>
+</div>
+<br/>
+<br/>
+<br/>
+{% endblock %}

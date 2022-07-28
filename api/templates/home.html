@@ -20,27 +20,58 @@
             <th scope="col">Category</th>
             <th scope="col">Price</th>
             <th scope="col">Stars</th>
-            <th scope="col">Update</th>
-            <th scope="col">Delete</th>
+            {% if user.is_authenticated %}
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+            {% endif %}
             </tr>
         </thead>
             <tbody>
-             {% for product_api in product_list %}
-                <tr class="table-secondary">
-                    <td>{{ product_api.id }}</td>
-                    <td>{{ product_api.name }}</td>
-                    <td>{{ product_api.category }}</td>
-                    <td>{{ product_api.price }}</td>
-                    <td>{{ product_api.stars }}</td>                   
-                    <td><button type="button" class="btn btn-outline-success">
-                        <a href="{% url 'update_product' product_api.pk %}">Update</a></button></td>
-                    <td><button type="button" class="btn btn-outline-danger">
-                        <a href="{% url 'delete_product' product_api.pk %}">Delete</a></button></td>
-                </tr>
-            {% endfor %}
+            {% for product in product_list %}
+                <tr class="table-secondary"> 
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.category }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>{{ product.stars }}</td>
+                    {% if user.is_authenticated %}
+                                    
+                        {% if user.id == product.author.id %}
+                            <td><button type="button" class="btn btn-outline-success">
+                                <a href="{% url 'update_product' product.pk %}">Update</a>
+                                </button>
+                            </td>
+                        {% else %}
+                            <td><button type="button" class="btn btn-outline-success">
+                                <a href="{% url 'login' %}">Login</a>
+                                </button>
+                            </td>
+                        {% endif %}
+                    {% endif %}
+                                     
+                                   
+                    {% if user.is_authenticated %}
+                         {% if user.id == product.author.id %}
+                            <td><button type="button" class="btn btn-outline-danger">
+                                <a href="{% url 'delete_product' product.pk %}">Delete</a>
+                                </button>
+                            </td>
+                        {% else %}
+                            <td><button type="button" class="btn btn-outline-danger">
+                                <a href="{% url 'login' %}">Login</a>
+                                </button>
+                            </td>
+                        {% endif %}
+                            
+                                    
+                    {% endif %}
+                                    
+            {% endfor %} 
             </tbody>
     </table>
 </div>
+
+
 <br/>
 <br/>
 <br/>
@@ -50,6 +81,10 @@
 <br/>
 <br/>
 <br/>
+<br/>
+<br/>
+
+
 
 
 {% endblock %}
